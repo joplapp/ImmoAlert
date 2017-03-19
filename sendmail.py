@@ -1,12 +1,13 @@
 import smtplib
+from credentials import Credentials
 
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 
 # AWS Config
 EMAIL_HOST = 'email-smtp.us-east-1.amazonaws.com'
-EMAIL_HOST_USER = 'foo'
-EMAIL_HOST_PASSWORD = 'bar'
+EMAIL_HOST_USER = Credentials.user
+EMAIL_HOST_PASSWORD = Credentials.password
 EMAIL_PORT = 587
 EMAIL_SENDER = 'johannes@plapp.de'
 
@@ -54,8 +55,8 @@ def sendMail(post):
     mime_text = MIMEText(TEMPLATE_CONTENT.format_map(obj), 'text')
     msg.attach(mime_text)
 
-    #s = smtplib.SMTP(EMAIL_HOST, EMAIL_PORT)
-    #s.starttls()
-    #s.login(EMAIL_HOST_USER, EMAIL_HOST_PASSWORD)
-    #s.sendmail(me, you, msg.as_string())
-    #s.quit()
+    s = smtplib.SMTP(EMAIL_HOST, EMAIL_PORT)
+    s.starttls()
+    s.login(EMAIL_HOST_USER, EMAIL_HOST_PASSWORD)
+    s.sendmail(EMAIL_SENDER, RECEIVER, msg.as_string())
+    s.quit()

@@ -34,4 +34,4 @@ class Post:
 
 
 def trim(str):
-    return str.replace("\r\n","").replace(" ", "")
+    return str.replace("\r\n","").replace("\n","").replace(" ", "")

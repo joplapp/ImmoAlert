@@ -5,7 +5,7 @@ from post import Post
 
 # this URL will be checked every once in a while
 # it can also be the result of some search
-URL = 'http://localhost:8080/SimplePage.html'
+URL = 'https://www.immobilienscout24.de/Suche/S-2/Wohnung-Miete/Bayern/Muenchen/-/-/-/EURO-1000,00-3000,00?enteredFrom=result_list'
 
 def parse(url, alreadyNotified):
     print("Getting posts from ", url)
@@ -14,7 +14,7 @@ def parse(url, alreadyNotified):
     tree = BeautifulSoup(a, "lxml")
 
     items = tree.find_all('li', attrs={'class': 'result-list__listing'})
-    print("Found", len(items), "posts (some might be hidden)")
+    print("Found", len(items)/2, "posts (assuming every 2nd is hidden)")
 
     sentEmailsCounter = 0
     for item in items:
