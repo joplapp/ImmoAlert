@@ -1,3 +1,4 @@
 .idea/
 __pycache__/
 notified_ids.txt
+credentials.py

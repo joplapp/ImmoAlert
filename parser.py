@@ -4,10 +4,7 @@ import requests
 from bs4 import BeautifulSoup
 from sendmail import sendMail
 from post import Post
-
-# this URL will be checked every once in a while
-# it can also be the result of some search
-URL = 'https://www.immobilienscout24.de/Suche/S-2/Wohnung-Miete/Bayern/Muenchen/-/3,00-5,00/-/EURO-1300,00-3000,00?enteredFrom=result_list'
+from config import Config
 
 def parse(url, alreadyNotified):
     print("Getting posts from ", url)
@@ -67,4 +64,4 @@ def logId(postId):
 
 # actually start everything
 alreadyNotified = initDb()
-parse(URL, alreadyNotified)
+parse(Config.searchUrl, alreadyNotified)

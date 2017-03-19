@@ -1,5 +1,6 @@
 import smtplib
 from credentials import Credentials
+from config import Config
 
 from email.mime.text import MIMEText
 
@@ -10,7 +11,7 @@ EMAIL_HOST_PASSWORD = Credentials.password
 EMAIL_PORT = 587
 EMAIL_SENDER = 'johannes@plapp.de'
 
-RECEIVER = "johannes@plapp.de"
+RECEIVER = Config.receiver
 
 TEMPLATE_TITLE="""
     NEU - {rent}, {rooms} mit {area}, in {address}: {title}
