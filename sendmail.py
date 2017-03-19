@@ -47,7 +47,7 @@ def sendMail(post):
         'link': post.link
     }
 
-    msg = MIMEText(TEMPLATE_CONTENT.format_map(obj), 'text')
+    msg = MIMEText(TEMPLATE_CONTENT.format_map(obj))
 
     msg['Subject'] = TEMPLATE_TITLE.format_map(obj)
     msg['From'] = EMAIL_SENDER
