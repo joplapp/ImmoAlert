@@ -1,7 +1,6 @@
 import smtplib
 from credentials import Credentials
 
-from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 
 # AWS Config
@@ -47,13 +46,11 @@ def sendMail(post):
         'link': post.link
     }
 
-    msg = MIMEMultipart('alternative')
+    msg = MIMEText(TEMPLATE_CONTENT.format_map(obj), 'text')
+
     msg['Subject'] = TEMPLATE_TITLE.format_map(obj)
     msg['From'] = EMAIL_SENDER
     msg['To'] = RECEIVER
-
-    mime_text = MIMEText(TEMPLATE_CONTENT.format_map(obj), 'text')
-    msg.attach(mime_text)
 
     s = smtplib.SMTP(EMAIL_HOST, EMAIL_PORT)
     s.starttls()
